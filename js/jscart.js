@@ -312,9 +312,9 @@ function Cart(){
 		
 		/* retrieve item data from cookie */
 		if( readCookie('simpleCart') ){
-			//var data = unescape(readCookie('simpleCart')).split('++');
+			var data = unescape(readCookie('simpleCart')).split('++');
 			//var data = JSON.parse(localStorage.getItem('simpleCart'));
-			var data = readData();
+			//var data = readData();
 			alert("JSON.parse:" + data);	
 			for(var x=0, xlen=data.length;x<xlen;x++){
 			
@@ -344,9 +344,9 @@ function Cart(){
 		//alert("save cookie:"+ dataString.substring( 2 ));
 		
 		createCookie('simpleCart', dataString.substring( 2 ), 30 );
-		var dataToStore = JSON.stringify(dataString.substring( 2 ));
+		//var dataToStore = JSON.stringify(dataString.substring( 2 ));
 //var simpleCart = new Cart();
-		localStorage.setItem('simpleCart', dataToStore);
+		//localStorage.setItem('simpleCart', dataToStore);
 	};
 	
 	
