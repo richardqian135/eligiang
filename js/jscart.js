@@ -313,8 +313,8 @@ function Cart(){
 		/* retrieve item data from cookie */
 		if( readCookie('simpleCart') ){
 			//var data = unescape(readCookie('simpleCart')).split('++');
-			var data = JSON.parse(localStorage.getItem('simpleCart'));
-			//var data = readData();
+			//var data = JSON.parse(localStorage.getItem('simpleCart'));
+			var data = readData();
 			alert("JSON.parse:" + data);	
 			for(var x=0, xlen=data.length;x<xlen;x++){
 			
@@ -648,7 +648,7 @@ function Cart(){
 	 ******************************************************/
 	
 	me.update = function() {
-		alert("update cart");
+		//alert("update cart");
 		if( !simpleCart.isLoaded ){
 			simpleCart.load();
 		} 
@@ -657,12 +657,12 @@ function Cart(){
 		}
 		me.updateTotals();
 		me.updateView();
-		alert("before save");		
+		//alert("before save");		
 		me.save();
 	};
 	
 	me.updateTotals = function() {
-		alert("updateTotals");
+		//alert("updateTotals");
 		me.total = 0 ;
 		me.quantity  = 0;
 		for( var current in me.items ){
@@ -868,7 +868,7 @@ function Shelf(){
 	};
 	
 	Shelf.prototype.checkChildren = function ( item , newItem) {
-		alert("Shelf.prototype.checkChildren");
+		//alert("Shelf.prototype.checkChildren");
 		for(var x=0;item.childNodes[x];x++){
 			
 			var node = item.childNodes[x];
@@ -922,7 +922,7 @@ function ShelfItem(){
 	
 	
 	ShelfItem.prototype.addToCart = function () {
-		alert("ShelfItem.prototype.addToCart");
+		//alert("ShelfItem.prototype.addToCart");
 		var outStrings = [],valueString;
 		for( var field in this ){
 			if( typeof( this[field] ) != "function" && field != "id" ){
@@ -979,7 +979,7 @@ function createCookie(name,value,days) {
 function readCookie(name) {
 	var nameEQ = name + "=";
 	var ca = document.cookie.split(';');
-	alert("readCookie:" + ca);
+	//alert("readCookie:" + ca);
 	for(var i=0;i < ca.length;i++) {
 		var c = ca[i];
 		while (c.charAt(0)==' ') c = c.substring(1,c.length);
@@ -990,7 +990,7 @@ function readCookie(name) {
 
 function readData() {
     var simpleCart = unescape(location.search.substring(1, location.search.length));
-    alert("readData" +simpleCart );
+    alert("readData:" +simpleCart );
 	return simpleCart;
 }
 
