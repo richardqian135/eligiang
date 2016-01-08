@@ -86,7 +86,7 @@ function Cart(){
  	 ******************************************************/
 
 	me.add = function () {
-		alert("add item");
+		//alert("add item");
 		var me=this;
 		/* load cart values if not already loaded */
 		if( !me.pageIsReady 	) { 
@@ -303,7 +303,7 @@ function Cart(){
 	
 	/* load cart from cookie */
 	me.load = function () {
-		alert("cookie load");
+		//alert("cookie load");
 		var me = this;
 		/* initialize variables and items array */
 		me.items = {};
@@ -313,9 +313,9 @@ function Cart(){
 		/* retrieve item data from cookie */
 		if( readCookie('simpleCart') ){
 			//var data = unescape(readCookie('simpleCart')).split('++');
-			//var data = JSON.parse(localStorage.getItem('simpleCart'));
-			var data = readData();
-			alert("readCookie:" + data);	
+			var data = JSON.parse(localStorage.getItem('simpleCart'));
+			//var data = readData();
+			alert("JSON.parse:" + data);	
 			for(var x=0, xlen=data.length;x<xlen;x++){
 			
 				var info = data[x].split('||');
@@ -336,12 +336,12 @@ function Cart(){
 	
 	/* save cart to cookie */
 	me.save = function () {
-		alert("save cookie:");
+		//alert("save cookie:");
 		var dataString = "";
 		for( var item in this.items ){
 			dataString = dataString + "++" + this.items[item].print();
 		}
-		alert("save cookie:"+ dataString.substring( 2 ));
+		//alert("save cookie:"+ dataString.substring( 2 ));
 		
 		createCookie('simpleCart', dataString.substring( 2 ), 30 );
 		var dataToStore = JSON.stringify(dataString.substring( 2 ));
