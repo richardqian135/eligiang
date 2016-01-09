@@ -447,7 +447,7 @@ function Cart(){
 		for( current in me.items ){
 			newRow = document.createElement('tr');
 			item = me.items[current];
-			
+			alert("item name:" + item.name);
 			for( header in me.cartHeaders ){
 				
 				newCell = document.createElement('td');
