@@ -315,7 +315,7 @@ function Cart(){
 			var data = unescape(readCookie('simpleCart')).split('++');
 			//var data = JSON.parse(localStorage.getItem('simpleCart'));
 			//var data = readData();
-			alert("JSON.parse:" + data);	
+			//alert("JSON.parse:" + data);	
 			for(var x=0, xlen=data.length;x<xlen;x++){
 			
 				var info = data[x].split('||');
@@ -424,9 +424,9 @@ function Cart(){
 			x,newRow,item,current,header,newCell,info,outputValue,option,headerInfo;
 		
 		/* create headers row */
-		newRow = document.createElement('div');
+		newRow = document.createElement('tr');
 		for( header in me.cartHeaders ){
-			newCell = document.createElement('div');
+			newCell = document.createElement('td');
 			headerInfo = me.cartHeaders[header].split("_");
 			
 			newCell.innerHTML = headerInfo[0];
@@ -445,12 +445,12 @@ function Cart(){
 		/* create a row for each item in the cart */
 		x=1;
 		for( current in me.items ){
-			newRow = document.createElement('div');
+			newRow = document.createElement('tr');
 			item = me.items[current];
 			
 			for( header in me.cartHeaders ){
 				
-				newCell = document.createElement('div');
+				newCell = document.createElement('td');
 				info = me.cartHeaders[header].split("_");
 				
 				switch( info[0].toLowerCase() ){
