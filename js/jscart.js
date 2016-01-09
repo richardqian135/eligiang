@@ -448,6 +448,9 @@ function Cart(){
 			newRow = document.createElement('tr');
 			item = me.items[current];
 			alert("item name:" + item.name);
+			if(item.name === null){
+				continue;
+			}
 			for( header in me.cartHeaders ){
 				
 				newCell = document.createElement('td');
