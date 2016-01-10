@@ -303,7 +303,7 @@ function Cart(){
 	
 	/* load cart from cookie */
 	me.load = function () {
-		//alert("cookie load");
+		alert("me.load");
 		var me = this;
 		/* initialize variables and items array */
 		me.items = {};
