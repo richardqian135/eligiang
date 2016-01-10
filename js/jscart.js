@@ -86,7 +86,7 @@ function Cart(){
  	 ******************************************************/
 
 	me.add = function () {
-		//alert("add item");
+		alert("add item:" + arguments);
 		var me=this;
 		/* load cart values if not already loaded */
 		if( !me.pageIsReady 	) { 
