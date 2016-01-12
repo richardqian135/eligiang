@@ -38,6 +38,7 @@ function Cart(){
 	me.isLoaded = false;
 	me.pageIsReady = false;
 	me.quantity = 0;
+	me.numberOfproduct = 0;
 	me.total = 0;
 	me.taxRate = 0;
 	me.taxCost = 0;
@@ -117,6 +118,7 @@ function Cart(){
 		if( me.hasItem(newItem) ) {
 			var id=me.hasItem(newItem);
 			me.items[id].quantity= parseInt(me.items[id].quantity,10) + parseInt(newItem.quantity,10);
+			me.items[id].numberOfProduct= parseInt(me.items[id].numberOfProduct,10) + parseInt(newItem.numberOfProduct,10);
 		} else {
 			me.items[newItem.id] = newItem;
 		}	
@@ -166,7 +168,7 @@ function Cart(){
      ******************************************************/
 
 	me.checkout = function() {
-		if( simpleCart.quantity === 0 ){
+		if( simpleCart.quantity === 0 || simpleCart.numberOfProduct === 0){
 			error("Cart is empty");
 			return;
 		}
@@ -208,7 +210,7 @@ function Cart(){
 			
 			var optionsString = "";
 			for( var field in item ){
-				if( typeof(item[field]) != "function" && field != "id" && field != "price" && field != "quantity" && field != "name" && field != "shipping") {
+				if( typeof(item[field]) != "function" && field != "id" && field != "price" && field != "quantity" && field != "name" && field != "shipping" && field != "numberOfProduct") {
 					optionsString = optionsString + ", " + field + "=" + item[field] ; 
 				}
 			}
@@ -217,6 +219,7 @@ function Cart(){
 			itemsString = itemsString 	+ "&item_name_" 	+ counter + "=" + item.name  +
 									 	  "&item_number_" 	+ counter + "=" + counter +
 										  "&quantity_"		+ counter + "=" + item.quantity +
+										  "&numberOfProduct_"	+ counter + "=" + item.numberOfProduct +
 										  "&amount_"		+ counter + "=" + me.currencyStringForPaypalCheckout( item.price ) + 
 										  "&on0_" 			+ counter + "=" + "Options" + 
 										  "&os0_"			+ counter + "=" + optionsString;
@@ -227,6 +230,7 @@ function Cart(){
 			 itemsString = itemsString 	+ "&item_name_" 	+ counter + "=Shipping"  +
 									 	  "&item_number_" 	+ counter + "=" + counter +
 										  "&quantity_"		+ counter + "=1" + 
+										  "&numberOfProduct__"		+ counter + "=" + 								  
 										  "&amount_"		+ counter + "=" + me.currencyStringForPaypalCheckout( me.shippingCost );
 		}
 		
@@ -258,6 +262,7 @@ function Cart(){
 			var item 				= me.items[current];
 			form.appendChild( me.createHiddenElement( "item_name_" 		+ counter, item.name		) );
 			form.appendChild( me.createHiddenElement( "item_quantity_" 	+ counter, item.quantity 	) );
+			form.appendChild( me.createHiddenElement( "item_numberOfProduct_" 	+ counter, item.numberOfProduct 	) );	
 			form.appendChild( me.createHiddenElement( "item_price_" 	+ counter, item.price		) );
 			form.appendChild( me.createHiddenElement( "item_currency_" 	+ counter, me.currency 		) );
 			form.appendChild( me.createHiddenElement( "item_tax_rate_" 	+ counter, me.taxRate 		) );
@@ -269,6 +274,7 @@ function Cart(){
 				if( typeof( item[field] ) != "function" && 
 									field != "id" 		&& 
 									field != "quantity"	&& 
+									field != "numberOfProduct" &&
 									field != "price" )
 				{
 						descriptionString = descriptionString + ", " + field + ": " + item[field];				
@@ -309,6 +315,7 @@ function Cart(){
 		me.items = {};
 		me.total = 0.00;
 		me.quantity = 0;
+		me.numberOfProduct = 0;
 		
 		/* retrieve item data from cookie */
 		if( readCookie('simpleCart') ){
@@ -362,6 +369,7 @@ function Cart(){
 		var me = this;
 		me.totalOutlets 			= getElementsByClassName('simpleCart_total');
 		me.quantityOutlets 			= getElementsByClassName('simpleCart_quantity');
+		me.numberOfProductOutlets 			= getElementsByClassName('simpleCart_numberOfProduct');		
 		me.cartDivs 				= getElementsByClassName('simpleCart_items');
 		me.taxCostOutlets			= getElementsByClassName('simpleCart_taxCost');
 		me.taxRateOutlets			= getElementsByClassName('simpleCart_taxRate');
@@ -388,6 +396,7 @@ function Cart(){
 	
 	me.updateViewTotals = function() {
 		var outlets = [ ["quantity"		, "none"		] , 
+						["numberOfProduct"		, "none"		] ,
 						["total"		, "currency"	] , 
 						["shippingCost"	, "currency"	] ,
 						["taxCost"		, "currency"	] ,
@@ -630,6 +639,7 @@ function Cart(){
 			for( var field in item ){
 				if( typeof( item[field] ) != "function"	&& 
 					field != "quantity"  				&& 
+					field != "numberOfProduct"  				&&
 					field != "id" 						){
 					if( item[field] != testItem[field] ){
 						matches = false;
@@ -668,12 +678,15 @@ function Cart(){
 		//alert("updateTotals");
 		me.total = 0 ;
 		me.quantity  = 0;
+		me.numberOfProduct = 0;
 		for( var current in me.items ){
 			var item = me.items[current];
 			if( item.quantity < 1 ){ 
 				item.remove();
 			} else if( item.quantity !== null && item.quantity != "undefined" ){
 				me.quantity = parseInt(me.quantity,10) + parseInt(item.quantity,10); 
+			} else if( item.name != null && item.name != "undefined"){
+				me.numberOfProduct ++;
 			}
 			if( item.price ){ 
 				me.total = parseFloat(me.total) + parseInt(item.quantity,10)*parseFloat(item.price); 
