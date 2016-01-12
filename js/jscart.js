@@ -839,7 +839,8 @@ function CartItem() {
 		alert("parseValuesFromArray:" + array);
 		if( array && array.length && array.length > 0) {
 			for(var x=0, xlen=array.length; x<xlen;x++ ){
-			
+				alert("parseValuesFromArray:" + array[x]);
+		
 				/* ensure the pair does not have key delimeters */
 				array[x].replace(/||/, "| |");
 				array[x].replace(/\+\+/, "+ +");
