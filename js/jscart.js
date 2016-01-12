@@ -836,6 +836,7 @@ function CartItem() {
 	
 	
 	CartItem.prototype.parseValuesFromArray = function( array ) {
+		alert("parseValuesFromArray:" + array);
 		if( array && array.length && array.length > 0) {
 			for(var x=0, xlen=array.length; x<xlen;x++ ){
 			
