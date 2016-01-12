@@ -682,6 +682,7 @@ function Cart(){
 		me.numberOfProduct = 0;
 		for( var current in me.items ){
 			var item = me.items[current];
+			alert("me.numberOfProduct: item.name : " + me.numberOfProduct + "," + item.name);
 			if( item.quantity < 1 ){ 
 				item.remove();
 			} else if( item.quantity !== null && item.quantity != "undefined" ){
