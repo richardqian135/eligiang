@@ -687,6 +687,7 @@ function Cart(){
 				me.quantity = parseInt(me.quantity,10) + parseInt(item.quantity,10); 
 			} else if( item.name != null && item.name != "undefined"){
 				me.numberOfProduct ++;
+				alert("me.numberOfProduct:" + me.numberOfProduct);
 			}
 			if( item.price ){ 
 				me.total = parseFloat(me.total) + parseInt(item.quantity,10)*parseFloat(item.price); 
