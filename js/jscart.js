@@ -113,6 +113,7 @@ function Cart(){
 	
 		newItem.parseValuesFromArray( argumentArray );
 		newItem.checkQuantityAndPrice();
+		newItem.checkNumberOfProducts();
 		
 		/* if the item already exists, update the quantity */
 		if( me.hasItem(newItem) ) {
@@ -834,6 +835,16 @@ function CartItem() {
 		}
 	};
 	
+	CartItem.prototype.checkNumberOfProducts = function() {
+		alert("CartItem.prototype.checkNumberOfProducts" + this);
+		if( !this.price || this.quantity == null || this.quantity == 'undefined'){ 
+			this.numberOfProduct = 1;
+			error('No product for item.');
+		} else {
+			this.numberOfProduct = ("" + this.numberOfProduct).replace(/,*/gi, "" );
+			this.numberOfProduct = parseInt( ("" + this.numberOfProduct).replace( /[^(\d|\.)]*/gi, "") , 10); 
+		}
+	};
 	
 	CartItem.prototype.parseValuesFromArray = function( array ) {
 		alert("parseValuesFromArray:" + array);
