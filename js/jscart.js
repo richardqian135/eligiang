@@ -686,7 +686,7 @@ function Cart(){
 				item.remove();
 			} else if( item.quantity !== null && item.quantity != "undefined" ){
 				me.quantity = parseInt(me.quantity,10) + parseInt(item.quantity,10); 
-			} else if( item.name != null && item.name != "undefined"){
+			} else if( item.name != null && item.name != undefined){
 				me.numberOfProduct ++;
 				alert("me.numberOfProduct:" + me.numberOfProduct);
 			}
