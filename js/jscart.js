@@ -51,7 +51,7 @@ function Cart(){
 	me.checkoutTo = PayPal;
 	me.email = "";
 	me.merchantId	 = "";
-	me.cartHeaders = ['Name','Price','Quantity','Total'];
+	me.cartHeaders = ['Name','Price','Quantity','Total', 'Remove'];
 	me.couponcode = 0;
 	/* 
 		cart headers: 
@@ -457,7 +457,7 @@ function Cart(){
 		for( current in me.items ){
 			newRow = document.createElement('tr');
 			item = me.items[current];
-			alert("item name:" + item.name);
+			//alert("item name:" + item.name);
 			if(item.name === null ||item.name === undefined ){
 				continue;
 			}
