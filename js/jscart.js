@@ -87,7 +87,7 @@ function Cart(){
  	 ******************************************************/
 
 	me.add = function () {
-		alert("add item:" + arguments);
+		//alert("add item:" + arguments);
 		var me=this;
 		/* load cart values if not already loaded */
 		if( !me.pageIsReady 	) { 
@@ -462,7 +462,7 @@ function Cart(){
 				continue;
 			}
 			for( header in me.cartHeaders ){
-				
+				alert("me.cartHeaders:" + me.cartHeaders + ";header:" + me.cartHeaders[header]);
 				newCell = document.createElement('td');
 				info = me.cartHeaders[header].split("_");
 				
@@ -662,7 +662,7 @@ function Cart(){
 	 ******************************************************/
 	
 	me.update = function() {
-		alert("me.update");
+		//alert("me.update");
 		if( !simpleCart.isLoaded ){
 			simpleCart.load();
 		} 
@@ -682,7 +682,7 @@ function Cart(){
 		me.numberOfProduct = 0;
 		for( var current in me.items ){
 			var item = me.items[current];
-			alert("me.numberOfProduct: item.name : " + me.numberOfProduct + "," + item.name);
+			//alert("me.numberOfProduct: item.name : " + me.numberOfProduct + "," + item.name);
 			if( item.quantity < 1 ){ 
 				item.remove();
 			} else if( item.quantity !== null && item.quantity != "undefined" ){
@@ -690,7 +690,7 @@ function Cart(){
 			} 	
 			if( item.name != null && item.name != undefined){
 				me.numberOfProduct ++;
-				alert("me.numberOfProduct:" + me.numberOfProduct);
+				//alert("me.numberOfProduct:" + me.numberOfProduct);
 			}
 			if( item.price ){ 
 				me.total = parseFloat(me.total) + parseInt(item.quantity,10)*parseFloat(item.price); 
@@ -714,7 +714,7 @@ function Cart(){
 		if (ccode == "abc123") {
 			
 			me.couponcode = 1;	
-			alert("Discount Applied");
+			//alert("Discount Applied");
 			
 		} else {
 			
@@ -838,7 +838,7 @@ function CartItem() {
 	};
 	
 	CartItem.prototype.checkNumberOfProducts = function() {
-		alert("CartItem.prototype.checkNumberOfProducts" + this);
+		//alert("CartItem.prototype.checkNumberOfProducts" + this);
 		if( !this.price || this.quantity == null || this.quantity == 'undefined'){ 
 			this.numberOfProduct = 1;
 			error('No product for item.');
@@ -849,10 +849,10 @@ function CartItem() {
 	};
 	
 	CartItem.prototype.parseValuesFromArray = function( array ) {
-		alert("parseValuesFromArray:" + array);
+		//alert("parseValuesFromArray:" + array);
 		if( array && array.length && array.length > 0) {
 			for(var x=0, xlen=array.length; x<xlen;x++ ){
-				alert("parseValuesFromArray:" + array[x]);
+				//alert("parseValuesFromArray:" + array[x]);
 		
 				/* ensure the pair does not have key delimeters */
 				array[x].replace(/||/, "| |");
