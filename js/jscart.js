@@ -462,9 +462,9 @@ function Cart(){
 				continue;
 			}
 			for( header in me.cartHeaders ){
-				alert("me.cartHeaders:" + me.cartHeaders + ";header:" + me.cartHeaders[header]);
 				newCell = document.createElement('td');
 				info = me.cartHeaders[header].split("_");
+				alert("me.cartHeaders:" + me.cartHeaders + ";header:" + me.cartHeaders[header] + ";split:" + info);
 				
 				switch( info[0].toLowerCase() ){
 					case "total":
