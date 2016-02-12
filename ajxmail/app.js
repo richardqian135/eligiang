@@ -13,7 +13,7 @@ $(function() {
 
 		// Serialize the form data.
 		var formData = $(form).serialize();
-
+		alert(formData);
 		// Submit the form using AJAX.
 		$.ajax({
 			type: 'POST',
