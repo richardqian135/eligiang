@@ -4,7 +4,7 @@
     // Added input sanitizing to prevent injection
 
     // Only process POST reqeusts.
-	alert("php");
+	//alert("php");
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Get the form fields and remove whitespace.
         $name = strip_tags(trim($_POST["name"]));
@@ -22,7 +22,7 @@
 
         // Set the recipient email address.
         // FIXME: Update this to your desired email address.
-        $recipient = "hello@example.com";
+        $recipient = "qian_richard@hotmail.com";
 
         // Set the email subject.
         $subject = "New contact from $name";
