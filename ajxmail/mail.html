@@ -1,40 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>AJAX Contact Form Demo</title>
-
-	<link rel="stylesheet" href="style.css">
+<title>JSP JavaMail Example </title>
 </head>
 <body>
-	<div id="page-wrapper">
-	  <h1>AJAX Contact Form Demo</h1>
-
-	  <div id="form-messages"></div>
-		
-		<form id="ajax-contact" method="post" action="mailer.jsp">
-			<div class="field">
-				<label for="name">Name:</label>
-				<input type="text" id="name" name="name" required>
-			</div>
-
-			<div class="field">
-				<label for="email">Email:</label>
-				<input type="email" id="email" name="email" required>
-			</div>
-
-			<div class="field">
-				<label for="message">Message:</label>
-				<textarea id="message" name="message" required></textarea>
-			</div>
-
-			<div class="field">
-				<button type="submit">Send</button>
-			</div>
-		</form>
-	</div>
-	
-	<script src="jquery-2.1.0.min.js"></script>
-	<script src="app.js"></script>
+<%@ page import="java.util.*" %>
+<%@ page import="javax.mail.*" %>
+<%@ page import="javax.mail.internet.*" %>
+<%@ page import="javax.activation.*" %>
+<%
+String host = "yourmailhost";
+String to = request.getParameter("to");
+String from = request.getParameter("from");
+String subject = request.getParameter("subject");
+String messageText = request.getParameter("body");
+boolean sessionDebug = false;
+// Create some properties and get the default Session.
+Properties props = System.getProperties();
+props.put("mail.host", host);
+props.put("mail.transport.protocol", "smtp");
+Session mailSession = Session.getDefaultInstance(props, null);
+ 
+// Set debug on the Session
+// Passing false will not echo debug info, and passing True will.
+ 
+mailSession.setDebug(sessionDebug);
+ 
+// Instantiate a new MimeMessage and fill it with the 
+// required information.
+ 
+Message msg = new MimeMessage(mailSession);
+msg.setFrom(new InternetAddress(from));
+InternetAddress[] address = {new InternetAddress(to)};
+msg.setRecipients(Message.RecipientType.TO, address);
+msg.setSubject(subject);
+msg.setSentDate(new Date());
+msg.setText(messageText);
+ 
+// Hand the message to the default transport service
+// for delivery.
+ 
+Transport.send(msg);
+out.println("Mail was sent to " + to);
+out.println(" from " + from);
+out.println(" using host " + host + ".");
+%>
+</table>
 </body>
 </html>
