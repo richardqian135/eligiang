@@ -455,4 +455,4 @@ h6 {
 }
 
 .required input:after { content:"*"; }
-.required_field:after {content:"*";}
+.required_field:before {content:"*";}
