@@ -158,24 +158,27 @@ ddsmoothmenu.init({
         <div id="content" class="float_r">
         <form method= "post" action="http://www.ipage.com/scripts/formemail.bml">
         	<h2>Checkout</h2>
+            <input type="hidden" name="my_email" value="richardqian135@gmail.com">
             <h5><strong>BILLING DETAILS</strong></h5>
             <div class="content_half float_l checkout">
-				Enter your full name as it is on the credit card:                				
-                <input type="text"  style="width:300px;"  />
+				Enter your full name:                				
+                <input type="text" name="fullname"style="width:300px;"  required/>
                 Address:
-                <input type="text"  style="width:300px;"  />
+                <input type="text" name="address" style="width:300px;"  required/>
                 City:
-                <input type="text"  style="width:300px;"  />
-                Country:
-                <input type="text"  style="width:300px;"  />
+                <input type="text" name="city" style="width:300px;" required/>
+                state:
+                <input type="text" name="state" style="width:300px;" required/>
+                zip:
+                <input type="text" name="zip" style="width:300px;" required/>
             </div>
-            
+            <input type="hidden" name="subject" value="Quote Request from %%fullname%%">
             <div class="content_half float_r checkout">
             	Email:
-				<input type="text"  style="width:300px;"  />
+				<input type="text" name="email" style="width:300px;"  required/>
                 Phone:<br />
 				<span style="font-size:10px">Please, specify your reachable phone number. YOU MAY BE GIVEN A CALL TO VERIFY AND COMPLETE THE ORDER.</span>
-                <input type="text"  style="width:300px;"  />
+                <input type="text" name="phone" style="width:300px;" required/>
             </div>
             
             <div class="cleaner h50"></div>

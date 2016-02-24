@@ -453,3 +453,5 @@ h6 {
 #templatemo_footer a {
 	color: #999; 
 }
+
+.required input:after { content:"*"; }
